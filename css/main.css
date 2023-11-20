@@ -1,0 +1,252 @@
+:root{
+    --yellowlomon:#FFD15B;
+    --fullblack: #1B1B1B;
+    --darkgrey: #7A7A7A;
+    --lightgrey: #E5E5E5;
+}
+
+h1 {
+    color: var(--yellowlomon);
+    font-family: 'Anton', sans-serif;
+    line-height: 20px;
+}
+
+header{
+    background-image: url(../assets/lampos-aritonang.svg);
+    background-position: center;
+    background-size: cover;
+}
+
+.search{
+    height: 45px;
+    color: var(--darkgrey);
+    font-family: 'manrope', sans-serif;
+    font-size: 1rem;
+}
+
+.submit{
+    background-color: var(--fullblack) !important;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    margin-left: -40px;
+    margin-top: 5px;
+}
+
+.submit::after{
+  content: "\f002";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.main-container{
+    background-color: var(--lightgrey)
+}
+
+.filter-select{
+    gap:60px
+}
+
+.filter-results{
+    color: var(--fullblack);
+    font-family: 'Anton', sans-serif;
+}
+
+#s2id_leadadd_mode_of_enq .select2-default {
+    color: #f00 !important;
+  }
+
+
+  .mg-custom-select-js {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+  }
+  
+  .mg-custom-select {
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: white;
+    position: absolute;
+    z-index: 3;
+  }
+  
+  .mg-custom-select__button {
+    border-width: 0;
+    outline: none;
+    cursor: pointer;
+    transition: all 300ms;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 1rem;
+    background-color: transparent;
+    font-family: 'manrope';
+    width: 100%;
+    text-align: left;
+  }
+  .mg-custom-select__button::after {
+    content: "";
+    width: 0.8rem;
+    height: 0.8rem;
+    transform: rotate(45deg);
+    transform-origin: 100% 50%;
+    border: 0.1rem solid;
+    border-top-color: transparent;
+    border-right-color: var(--fullblack);
+    border-bottom-color: var(--fullblack);
+    border-left-color: transparent;
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .mg-custom-select__search {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-width: 0.1rem;
+    border-color: var(--lightgrey);
+    border-style: solid;
+    outline: none;
+    border-radius: 5px;
+    color: black;
+    font-size: 1.6rem;
+    font-family: 'manrope', sans-serif;
+  }
+  
+  .mg-custom-select__search__label {
+    display: inline-block;
+  }
+  
+  .mg-custom-select__dropdown {
+    transition: all 300ms;
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  .mg-custom-select__dropdown.opened {
+    max-height: 35rem;
+    overflow-y: auto;
+  }
+  
+  .mg-custom-select__list {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .mg-custom-select__list__item {
+    cursor: pointer;
+    padding: 0.5rem 0.2rem;
+  }
+  .mg-custom-select__list__item:hover {
+    background-color: var(--yellowlomon);
+    color: var(--fullblack);
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+
+  .mg-custom-select{
+    width: 195px;
+  }
+
+  .mg-custom-select__search
+  {
+    width: 100%;
+  }
+
+  article{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: #fff;
+  }
+
+  article img{
+    border-radius: 15px 15px 0px 0px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .recipt-container{
+    background-color: #fff;
+    width: 100%;
+    padding: 30px 25px;
+    border-radius: 0px 0px 15px 15px;
+  }
+
+.recipt-title{
+  font-weight: 400;
+  font-family: 'Anton', sans-serif;
+  color: #000;
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+}
+
+.recipts-img-duration{
+  position: relative;
+}
+
+.duration{
+  position: absolute;
+  padding: 5px 15px;
+  background-color: var(--yellowlomon);
+  border-radius: 20px;
+  right: 20px;
+  top: 20px;
+}
+
+.recipt-label{
+  color: var(--darkgrey);
+  font-family: 'manrope';
+  font-size: 1rem;
+  font-size: 700;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.recipt-paragraphe{
+  color: var(--fullblack);
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'manrope';
+  margin-bottom: 30px;
+}
+
+.ingredient-title{
+  font-size: 14px;
+  font-family: 'manrope';
+  font-weight: 500;
+  color: var(--fullblack);
+}
+
+.ingredient-quantity{
+  font-size: 14px;
+  font-family: 'manrope';
+  font-weight: 400;
+  color: var(--darkgrey);
+}
+
+.ingredient{
+  width: 100%;
+}
+
+.ingredients-recipt{
+  grid-template-columns: 1fr 1fr;
+}
+
+.recipt-contenaire{
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.selected{
+  background-color: var(--yellowlomon);
+}

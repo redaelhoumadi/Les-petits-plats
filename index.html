@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+
+</head>
+<body>
+    <header class="px-16 pt-4  pb-72" >
+        <div class="logo">
+            <a href="#"><img src="assets/Logo.svg"></a>
+        </div>
+        <div class="flex-col mt-40 justify-center ">
+            <h1 class="text-center text-4xl px-72  mb-8">CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
+            <form class="flex justify-center">
+                <input type="text" class="w-7/12 rounded-md search pl-4 pr-12" placeholder="Rechercher une recette, un ingrédient, ...">
+                <input type="submit" value="🔍" class="rounded-md submit">
+        </form>
+        </div>
+    </header>
+    <main class="main-container px-20 pt-5 pb-48">
+        <div class="flex justify-between items-center">
+            <div class="flex filter-select">
+                <div class="mg-custom-select-js mg-custom-select--search-js">
+                    <select id="destinations" class="js-custom-select">
+                      <option value="Choose destination" disabled selected>Ingrédients</option>
+                      <option value="1">Jus de citron</option>
+                      <option value="2">Tomate</option>
+                      <option value="3">Poulet</option>
+                      <option value="4">Poivron rouge</option>
+                    </select>
+                  </div>
+                  <div class="mg-custom-select-js mg-custom-select--search-js">
+                    <select id="destinations" class="js-custom-select">
+                      <option value="Choose destination" disabled selected>Appareils</option>
+                      <option value="1">Jus de citron</option>
+                      <option value="2">Tomate</option>
+                      <option value="3">Poulet</option>
+                      <option value="4">Poivron rouge</option>
+                    </select>
+                  </div>
+                  <div class="mg-custom-select-js mg-custom-select--search-js">
+                    <select id="destinations" class="js-custom-select">
+                      <option value="Choose destination" disabled selected>Ustensiles</option>
+                      <option value="1">Jus de citron</option>
+                      <option value="2">Tomate</option>
+                      <option value="3">Poulet</option>
+                      <option value="4">Poivron rouge</option>
+                    </select>
+                  </div>
+            </div>
+            <div class="filter-results text-xl">1500 recettes</div>
+        </div>
+        <div class="mt-12 grid gap-10 recipt-contenaire">
+            
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="./js/select.js"></script>
+    <script src="./js/api/api.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/templates/recipeCard.js"></script>
+</body>
+</html>
