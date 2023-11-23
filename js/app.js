@@ -1,7 +1,7 @@
 class App {
     constructor() {
         this.$recipesWrapper = document.querySelector('.recipt-contenaire')
-        this.recipesApi = new recipeApi('../data/recipes.json')
+        this.recipesApi = new recipeApi('data/recipes.json')
     }
 
     async main() {
