@@ -8,7 +8,7 @@ class recipeCard{
         $wrapper.classList.add('recipe-card-wrapper')
 
         const recipeCard = `
-        <article>
+        <article id= "${this._recipe.id}">
                 <div class="recipts-img-duration">
                     <span class="duration">${this._recipe.time}min</span>
                     <img src="../assets/${this._recipe.image}">
@@ -46,4 +46,5 @@ class recipeCard{
         $wrapper.innerHTML = recipeCard
         return $wrapper
     }
+    
 }

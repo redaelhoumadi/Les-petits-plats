@@ -23,7 +23,8 @@
             <h1 class="text-center text-4xl px-72  mb-8">CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
             <div class="search-form-wrapper">
               <form class="flex justify-center">
-                <input type="text" class="w-7/12 rounded-md search pl-4 pr-12" placeholder="Rechercher une recette, un ingrédient, ...">
+                <input type="text" class="w-7/12 rounded-md search pl-4 pr-20" placeholder="Rechercher une recette, un ingrédient, ...">
+                <button aria-hidden="true" aria-label="Clear search" class="clear-search"></button>
                 <label  class="rounded-md submit"><i class="fa-solid fa-magnifying-glass"></i></label>
         </form>
             </div>
@@ -31,45 +32,33 @@
     </header>
     <main class="main-container px-20 pt-5 pb-48">
         <div class="flex justify-between items-center">
-            <div class="flex filter-select">
-                <div class="mg-custom-select-js mg-custom-select--search-js">
-                    <select id="destinations" class="js-custom-select">
-                      <option value="Choose destination" disabled selected>Ingrédients</option>
-                      <option value="1">Jus de citron</option>
-                      <option value="2">Tomate</option>
-                      <option value="3">Poulet</option>
-                      <option value="4">Poivron rouge</option>
-                    </select>
-                  </div>
-                  <div class="mg-custom-select-js mg-custom-select--search-js">
-                    <select id="destinations" class="js-custom-select">
-                      <option value="Choose destination" disabled selected>Appareils</option>
-                      <option value="1">Jus de citron</option>
-                      <option value="2">Tomate</option>
-                      <option value="3">Poulet</option>
-                      <option value="4">Poivron rouge</option>
-                    </select>
-                  </div>
-                  <div class="mg-custom-select-js mg-custom-select--search-js">
-                    <select id="destinations" class="js-custom-select">
-                      <option value="Choose destination" disabled selected>Ustensiles</option>
-                      <option value="1">Jus de citron</option>
-                      <option value="2">Tomate</option>
-                      <option value="3">Poulet</option>
-                      <option value="4">Poivron rouge</option>
-                    </select>
-                  </div>
-            </div>
+          <div class="flex filter-select">
+            <div class="mg-custom-select-js mg-custom-select--search-js">
+                <select id="ingredients" class="js-custom-select">
+                  <option value="Choose destination" disabled selected>Ingrédients</option>
+                </select>
+              </div>
+
+              <div class="mg-custom-select-js mg-custom-select--search-js">
+                <select id="appareils" class="js-custom-select">
+                  <option value="Choose destination" disabled selected>Appareils</option>
+                </select>
+              </div>
+
+              <div class="mg-custom-select-js mg-custom-select--search-js">
+                <select id="Ustensiles" class="js-custom-select">
+                  <option value="Choose destination" disabled selected>Ustensiles</option>
+                </select>
+              </div>
+        </div>
             <div class="filter-results text-xl"></div>
         </div>
-        <div class="mt-12 grid gap-10 recipt-contenaire">
-            
-        </div>
+        <div class="mt-12 grid gap-10 recipt-contenaire"></div>
     </main>
     <footer>
 
     </footer>
-    <script src="./js/select.js"></script>
+    <script src="./js/select.js" type="module"></script>
     <script src="./js/api/api.js"></script>
     <script src="./js/app.js" type="module"></script>
     <script src="./js/pages/index.js" type="module"></script>

@@ -1,3 +1,70 @@
+import {recipes} from '../data/recipes.js'
+
+function allIngredients(){
+  const select = document.getElementById('ingredients')
+
+// Utilise la méthode .flat() pour aplatir le tableau de tableaux en un seul tableau
+const allIngredients = recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient));
+
+
+
+const uniqueIngredients = [...new Set(allIngredients)];
+
+// Trier les ingrédients par ordre alphabétique
+const sortedIngredients = uniqueIngredients.sort((a, b) => a.localeCompare(b));
+
+// Affiche chaque ingrédient dans la console
+sortedIngredients.forEach((ingredient) => {
+    const ingrediente = ingredient
+    const option = document.createElement('option');
+    option.innerHTML = ingrediente
+    select.appendChild(option)
+});
+
+}
+
+function allAppareils(){
+  const select = document.getElementById('appareils')
+
+      // Extraction de tous les appareils de toutes les recettes
+const allAppliances = [...new Set(recipes.map(recipe => recipe.appliance))];
+const sortedallAppliances = allAppliances.sort((a, b) => a.localeCompare(b));
+
+sortedallAppliances.forEach((recipe) => {
+  const Appareil = recipe
+
+    const option = document.createElement('option');
+    option.innerHTML = Appareil
+    select.appendChild(option)
+    
+  }) 
+  
+
+}
+
+function allUstensils(){
+  const select = document.getElementById('Ustensiles')
+
+      // Extraction de tous les appareils de toutes les recettes
+      const allUstensils = [...new Set(recipes.flatMap(recipe => recipe.ustensils))];
+      const sortedallUstensilss = allUstensils.sort((a, b) => a.localeCompare(b));
+
+sortedallUstensilss.forEach((recipe) => {
+  const Ustensilss = recipe
+
+    const option = document.createElement('option');
+    option.innerHTML = Ustensilss
+    select.appendChild(option)
+    
+  }) 
+  
+
+}
+
+allIngredients()
+allAppareils()
+allUstensils()
+
 //custom select dropdown
 var parents = Array.from(document.querySelectorAll('.mg-custom-select-js'));
 parents.forEach(function(item, index) {
@@ -98,3 +165,4 @@ parents.forEach(function(item, index) {
     parent.style.height = window.getComputedStyle(customSelect, null).getPropertyValue('height');
   }, 200);  
 })
+

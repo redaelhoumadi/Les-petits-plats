@@ -1,11 +1,14 @@
-class App {
+import {recipes} from '../data/recipes.js'
+
+
+export class App {
     constructor() {
         this.$recipesWrapper = document.querySelector('.recipt-contenaire')
-        this.recipesApi = new recipeApi('data/recipes.json')
+        this.recipesApi = new recipeApi(recipes)
     }
 
     async main() {
-        const recipes = await this.recipesApi.getRecipes()
+        const recipes = this.recipesApi._url
 
         recipes.forEach(recipe => {
             const Template = new recipeCard(recipe)

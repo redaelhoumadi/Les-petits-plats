@@ -29,16 +29,24 @@ header{
     cursor: pointer;
     width: 35px;
     height: 35px;
-    margin-left: -40px;
+    margin-left: -41px;
     margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.submit::after{
-  content: "\f002";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 600;
-  font-size: 1.4rem;
+.submit:hover{
+  background-color: var(--yellowlomon) !important;
+}
+
+.submit i{
+  font-size: 1.2rem;
   color: #fff;
+}
+
+.submit i:hover{
+  color: var(--fullblack);
 }
 
 .main-container{
@@ -249,4 +257,28 @@ header{
 
 .selected{
   background-color: var(--yellowlomon);
+}
+
+.clear-search{
+  display: none;
+  cursor: pointer;
+  margin-left: -67px;
+  margin-right: 10px;
+  
+}
+
+.clear-search::after{
+    content: "\f00d";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--darkgrey)
+}
+
+.clear-search:hover::after{
+  color: var(--yellowlomon);
+}
+
+.submitactive{
+  margin-left: 0px;
 }
