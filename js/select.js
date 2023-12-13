@@ -1,4 +1,4 @@
-import {recipes} from '../data/recipes.js'
+import {recipes} from 'data/recipes.js'
 
 function allIngredients(){
   const select = document.getElementById('ingredients')
