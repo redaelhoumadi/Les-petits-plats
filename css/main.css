@@ -163,6 +163,7 @@ header{
 
   .mg-custom-select{
     width: 195px;
+    cursor: pointer;
   }
 
   .mg-custom-select__search
@@ -238,7 +239,7 @@ header{
 
 .ingredient-quantity{
   font-size: 14px;
-  font-family: 'manrope';
+  font-family: 'manrope' !important;
   font-weight: 400;
   color: var(--darkgrey);
 }
@@ -253,6 +254,7 @@ header{
 
 .recipt-contenaire{
   grid-template-columns: 1fr 1fr 1fr;
+  
 }
 
 .selected{
@@ -281,4 +283,45 @@ header{
 
 .submitactive{
   margin-left: 0px;
+}
+
+#selected-tags{
+  display: flex ;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.tags{
+  background-color: var(--yellowlomon);
+  color: var(--fullblack);
+  font-family: 'manrope', sans-serif;
+  font-size: 1.2rem;
+  padding: 18px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px
+}
+
+.recipes-container-erreur{
+  padding-top: 19px;
+  display: none;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--fullblack);
+}
+
+.tags-button{
+  position: relative;
+  right: 0;
+}
+
+.tags-button::after {
+  content: "\f00d";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #000;
 }
