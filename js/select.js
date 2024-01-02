@@ -1,5 +1,5 @@
 import {recipes} from '../data/recipes.js'
-import { displayResults } from './pages/index.js';
+import { displayResults, query } from './pages/index.js';
 import { clearSelect } from './pages/index.js';
 import { cleanRecipescontenair } from './pages/index.js';
 import { displayTotalRecipes } from './pages/index.js';
@@ -108,8 +108,23 @@ allUstensils(recipes)
 
 export let tableauValeurs = [];
 export let selectValue ='';
-export let hasAllValues=''
+export let resultsTags=''
 
+
+function updateSearchTags(){
+  if (query.length > 0){
+    tagsSearch(tableauValeurs,resultsSearch)
+    console.log('if1');
+    console.log(resultsSearch.length);
+  }
+  else if (resultsSearch.length === 0){
+    tagsSearch(tableauValeurs,recipes)
+    console.log('if2');
+  }
+  else {
+    tagsSearch(tableauValeurs,recipes)
+  }
+}
 
 export function custumSelect(){
 // Sélection de tous les éléments avec la classe 'mg-custom-select-js'
@@ -186,26 +201,13 @@ parents.forEach(function(item) {
       let selectedOption = parent.childNodes[1].options[parent.childNodes[1].selectedIndex];
       dropdown.classList.toggle('opened');
       parent.childNodes[1].value = this.dataset.value;
-      let tags = document.createElement('div');
-      const tagsButton = document.createElement('button');
-      const tagsLabel = document.createElement('h3');
-      tags.classList.add('tags')
-      tagsButton.classList.add('tags-button');
-      const tagContnair = document.getElementById('selected-tags')
-      tagsLabel.innerHTML = this.dataset.value;
-      tags.appendChild(tagsLabel);
-      tags.appendChild(tagsButton);
-      
-      tagContnair.appendChild(tags);
       selectValue= this.dataset.value;
+      
+      
       updateTags(selectValue)
-      if (resultsSearch.length > 0){
-        tagsSearch(tableauValeurs,resultsSearch)
-      }
-      else if (resultsSearch.length === 0){
-        tagsSearch(tableauValeurs,recipes)
-      }
+      updateSearchTags()
 
+      
       selectedOption.removeAttribute('selected');
       parent.childNodes[1].options[index + 1].setAttribute('selected', true);
 
@@ -222,25 +224,27 @@ parents.forEach(function(item) {
         }
         customSelect__items.forEach(function(item, index) {
           item.classList.remove('hidden');
+          
         })      
       }, duration)
     })
   })
 
   // Ajouter un écouteur d'événement 'keyup' à la barre de recherche (le cas échéant)
-  if(withSearch) {
-    searchInput.addEventListener('keyup', function() {
+  if (withSearch) {
+    searchInput.addEventListener('input', function() {
       let inputVal = this.value;
-      let pattern = new RegExp(inputVal, 'i');
-      customSelect__items.forEach(function(item, index) {
+      let pattern = new RegExp(inputVal, 'gi');
+      customSelect__items.forEach(function(item) {
         if (!item.textContent.match(pattern)) {
           item.classList.add('hidden');
         } else {
           item.classList.remove('hidden');
-        }  
-      })
-    })
+        }
+      });
+    });
   }
+  
 
   // Ajouter un écouteur d'événement 'click' au bouton d'invocation
   customSelect__invoker.addEventListener('click', function() {
@@ -266,7 +270,7 @@ document.addEventListener('click', function(event) {
 }
 
 export function tagsSearch(tableauValeurs,recipeses) {
-  const results = recipeses.filter(recipe => {
+  resultsTags = recipeses.filter(recipe => {
       // Vérifier si la recette contient tous les éléments du tableau
       const hasAllValues = tableauValeurs.every(choice => {
           const hasMatchingIngredient = recipe.ingredients.some(ingredient =>
@@ -286,23 +290,57 @@ export function tagsSearch(tableauValeurs,recipeses) {
   });
 
  
-console.log(results);
-  displayTotalRecipes(results)
+  displayTotalRecipes(resultsTags)
 clearSelect()
-allIngredients(results)
-allAppareils(results)
-allUstensils(results)
+allIngredients(resultsTags)
+allAppareils(resultsTags)
+allUstensils(resultsTags)
 custumSelect()
 cleanRecipescontenair()
-displayResults(results)
+displayResults(resultsTags)
 }
 
 
-
 function updateTags() {
-  if (!tableauValeurs.includes(selectValue)) {
-    tableauValeurs.push(selectValue);
-    console.log(tableauValeurs);}
+  
+  // Assurer que selectValue a une valeur valide
+  if (selectValue) {
+    // Vérifiez si selectValue est déjà présent dans le tableau
+    if (!tableauValeurs.includes(selectValue)) {
+      tableauValeurs.push(selectValue);
+
+      let tags = document.createElement('div');
+      const tagsButton = document.createElement('button');
+      const tagsLabel = document.createElement('h3');
+      
+      tags.classList.add('tags');
+      tagsButton.classList.add('tags-button');
+
+      // Configurer le bouton pour supprimer le tag
+      tagsButton.addEventListener('click', function() {
+        tagContainer.removeChild(tags);
+        // Supprimer la valeur correspondante du tableau
+        const valueToRemove = tagsLabel.innerHTML;
+        const index = tableauValeurs.indexOf(valueToRemove);
+        if (index > -1) {
+          tableauValeurs.splice(index, 1);
+          console.log(tableauValeurs); // Afficher le tableau mis à jour
+          
+          updateSearchTags()
+        }
+      });
+
+      const tagContainer = document.getElementById('selected-tags');
+      tagsLabel.innerHTML = selectValue;
+      tags.appendChild(tagsLabel);
+      tags.appendChild(tagsButton);
+      tagContainer.appendChild(tags);
+      console.log(tableauValeurs);
+    }
+  }
+  console.log(selectValue);
+
+  
 }
 
 custumSelect()
