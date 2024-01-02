@@ -154,7 +154,8 @@ export let resultsSearch = ''
                 allAppareils(recipes)
                 allUstensils(recipes)
                 custumSelect() 
-                console.log("ca5")  
+                console.log("ca5")
+                displayResultsFilters()
                 
             } 
         })
@@ -184,5 +185,6 @@ export let resultsSearch = ''
                 allAppareils(recipes)
                 allUstensils(recipes)
                 custumSelect()
+                displayResultsFilters()
         }
     })
