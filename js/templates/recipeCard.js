@@ -11,7 +11,7 @@ class recipeCard{
         <article id= "${this._recipe.id}">
                 <div class="recipts-img-duration">
                     <span class="duration">${this._recipe.time}min</span>
-                    <img src="../assets/${this._recipe.image}">
+                    <img src="assets/${this._recipe.image}">
                 </div>
                 <div class="recipt-container">
                     <h2 class="recipt-title">${this._recipe.name}</h2>
