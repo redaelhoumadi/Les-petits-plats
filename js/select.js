@@ -8,98 +8,122 @@ import { resultsSearch} from './pages/index.js';
 export function allIngredients(recipes) {
   const select = document.getElementById('ingredients');
 
-  // Utilise la méthode .flat() pour aplatir le tableau de tableaux en un seul tableau
-  const allIngredients = recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase()));
+  const allIngredients = [];
+for (let i = 0; i < recipes.length; i++) {
+    const recipe = recipes[i];
+    for (let j = 0; j < recipe.ingredients.length; j++) {
+        const ingredient = recipe.ingredients[j].ingredient.toLowerCase();
+        allIngredients.push(ingredient);
+    }
+}
 
-  // Utilise Set directement pour obtenir des valeurs uniques
-  const uniqueIngredients = [...new Set(allIngredients)];
+const uniqueIngredients = [...new Set(allIngredients)];
+uniqueIngredients.sort((a, b) => a.localeCompare(b));
 
-  // Trier les ingrédients par ordre alphabétique
-  uniqueIngredients.sort((a, b) => a.localeCompare(b));
-
-  // Utilise document.createDocumentFragment pour améliorer les performances lors de l'ajout d'options
   const fragment = document.createDocumentFragment();
 
   const firstOption = document.createElement('option');
-  firstOption.classList.add('btn-select')
-  firstOption.textContent = 'Ingredients'
+  firstOption.classList.add('btn-select');
+  firstOption.textContent = 'Ingredients';
   firstOption.disabled = true;
   firstOption.selected = true;
   select.appendChild(firstOption);
-  // Utilise forEach avec la déstructuration des paramètres
-  uniqueIngredients.forEach((ingredient) => {
+
+  // Utilise une boucle for pour créer les options
+  for (let i = 0; i < uniqueIngredients.length; i++) {
+    const ingredient = uniqueIngredients[i];
     const option = document.createElement('option');
     option.classList.add('second');
     option.textContent = ingredient;
     fragment.appendChild(option);
-  });
+  }
 
-  // Ajoute le fragment complet en une seule opération
   select.appendChild(fragment);
 }
 
 export function allAppareils(recipes) {
   const select = document.getElementById('appareils');
 
-  // Utilise Set directement pour obtenir des valeurs uniques
-  const uniqueAppliances = [...new Set(recipes.map(recipe => recipe.appliance.toLowerCase()))];
+  const uniqueAppliances = [];
+const applianceSet = new Set();
 
-  // Trie les appareils par ordre alphabétique
-  uniqueAppliances.sort((a, b) => a.localeCompare(b));
+// Utilise une boucle for pour itérer sur les recettes
+for (let i = 0; i < recipes.length; i++) {
+    const recipe = recipes[i];
+    const applianceLower = recipe.appliance.toLowerCase();
 
-  // Utilise document.createDocumentFragment pour améliorer les performances lors de l'ajout d'options
-  const fragment = document.createDocumentFragment();
+    // Vérifie si l'appareil est déjà dans le Set
+    if (!applianceSet.has(applianceLower)) {
+        applianceSet.add(applianceLower);
+        uniqueAppliances.push(applianceLower);
+    }
+}
+
+// Trie les appareils par ordre alphabétique
+uniqueAppliances.sort((a, b) => a.localeCompare(b));
+
+const fragment = document.createDocumentFragment();
+
 
   const firstOption = document.createElement('option');
-  firstOption.classList.add('btn-select')
-  firstOption.textContent = 'Appareils'
+  firstOption.classList.add('btn-select');
+  firstOption.textContent = 'Appareils';
   firstOption.disabled = true;
   firstOption.selected = true;
   select.appendChild(firstOption);
 
-  // Utilise forEach avec la déstructuration des paramètres
-  uniqueAppliances.forEach((appliance) => {
+  // Utilise une boucle for pour créer les options
+  for (let i = 0; i < uniqueAppliances.length; i++) {
+    const appliance = uniqueAppliances[i];
     const option = document.createElement('option');
     option.textContent = appliance;
     fragment.appendChild(option);
-  });
+  }
 
-  // Ajoute le fragment complet en une seule opération
   select.appendChild(fragment);
 }
+
 
 
 export function allUstensils(recipes) {
   const select = document.getElementById('Ustensiles');
 
-  // Utilise Set directement pour obtenir des valeurs uniques
-  const uniqueUstensils = [...new Set(
-    recipes.flatMap(recipe => recipe.ustensils.map(ustensil => ustensil.toLowerCase()))
-  )];
+  const allUstensils = [];
+  
+  // Utilise une boucle for pour parcourir les recettes
+  for (let i = 0; i < recipes.length; i++) {
+    const recipe = recipes[i];
+    
+    // Utilise une boucle for pour parcourir les ustensiles de chaque recette
+    for (let j = 0; j < recipe.ustensils.length; j++) {
+      const ustensil = recipe.ustensils[j].toLowerCase();
+      allUstensils.push(ustensil);
+    }
+  }
 
-  // Trie les ustensiles par ordre alphabétique
+  const uniqueUstensils = [...new Set(allUstensils)];
   uniqueUstensils.sort((a, b) => a.localeCompare(b));
 
-  // Utilise document.createDocumentFragment pour améliorer les performances lors de l'ajout d'options
   const fragment = document.createDocumentFragment();
 
   const firstOption = document.createElement('option');
-  firstOption.classList.add('btn-select')
-  firstOption.textContent = 'Ustensiles'
+  firstOption.classList.add('btn-select');
+  firstOption.textContent = 'Ustensiles';
   firstOption.disabled = true;
   firstOption.selected = true;
   select.appendChild(firstOption);
 
-  // Utilise forEach avec la déstructuration des paramètres
-  uniqueUstensils.forEach((ustensil) => {
+  // Utilise une boucle for pour créer les options
+  for (let i = 0; i < uniqueUstensils.length; i++) {
+    const ustensil = uniqueUstensils[i];
     const option = document.createElement('option');
     option.textContent = ustensil;
     fragment.appendChild(option);
-  });
+  }
 
-  // Ajoute le fragment complet en une seule opération
   select.appendChild(fragment);
 }
+
 
 allIngredients(recipes)
 allAppareils(recipes)
@@ -114,12 +138,11 @@ export let resultsTags=''
 function updateSearchTags(){
   if (query.length > 0){
     tagsSearch(tableauValeurs,resultsSearch)
-    console.log('if1');
-    console.log(resultsSearch.length);
+  
   }
   else if (resultsSearch.length === 0){
     tagsSearch(tableauValeurs,recipes)
-    console.log('if2');
+    
   }
   else {
     tagsSearch(tableauValeurs,recipes)
@@ -157,6 +180,7 @@ parents.forEach(function(item) {
   if(withSearch) {
     var searchInput = document.createElement('input');
     searchInput.classList.add('mg-custom-select__search');
+    
     searchInput.setAttribute('type', 'text');
 
     let searchInputLabel = document.createElement('label');
@@ -168,21 +192,20 @@ parents.forEach(function(item) {
 
   // Créer la liste d'options du menu déroulant
   let customSelect__list = document.createElement('ul');
-  customSelect__list.classList.add('mg-custom-select__list');
-  let selectOption = Array.from(parent.querySelectorAll('option'));
-  selectOption.forEach(function(item, index) {
-    if (index == 0) {
-      return;
-    }
+customSelect__list.classList.add('mg-custom-select__list');
+let selectOption = Array.from(parent.querySelectorAll('option'));
+
+// Utilise une boucle for pour créer les éléments li
+for (let index = 1; index < selectOption.length; index++) {
+    let item = selectOption[index];
     let customSelect__item = document.createElement('li');
     
-    customSelect__item.classList.add('mg-custom-select__list__item')
+    customSelect__item.classList.add('mg-custom-select__list__item');
     customSelect__item.dataset.value = item.value;
     customSelect__item.textContent = item.text;
     customSelect__list.appendChild(customSelect__item);
-    
+}
 
-  })
 
   // Assembler tous les éléments
   dropdown.appendChild(customSelect__list);
@@ -222,10 +245,10 @@ parents.forEach(function(item) {
         if(withSearch) {
           searchInput.value = '';
         }
-        customSelect__items.forEach(function(item, index) {
+        for (let index = 0; index < customSelect__items.length; index++) {
+          let item = customSelect__items[index];
           item.classList.remove('hidden');
-          
-        })      
+      }      
       }, duration)
     })
   })
@@ -235,13 +258,15 @@ parents.forEach(function(item) {
     searchInput.addEventListener('input', function() {
       let inputVal = this.value;
       let pattern = new RegExp(inputVal, 'gi');
-      customSelect__items.forEach(function(item) {
+      for (let index = 0; index < customSelect__items.length; index++) {
+        let item = customSelect__items[index];
+    
         if (!item.textContent.match(pattern)) {
-          item.classList.add('hidden');
+            item.classList.add('hidden');
         } else {
-          item.classList.remove('hidden');
+            item.classList.remove('hidden');
         }
-      });
+    }
     });
   }
   
@@ -269,35 +294,40 @@ document.addEventListener('click', function(event) {
 
 }
 
-export function tagsSearch(tableauValeurs,recipeses) {
-  resultsTags = recipeses.filter(recipe => {
-      // Vérifier si la recette contient tous les éléments du tableau
-      const hasAllValues = tableauValeurs.every(choice => {
-          const hasMatchingIngredient = recipe.ingredients.some(ingredient =>
-              ingredient.ingredient.toLowerCase().includes(choice)
-          );
+export function tagsSearch(tableauValeurs, recipeses) {
+  resultsTags = [];
+  
+  for (let i = 0; i < recipeses.length; i++) {
+    const recipe = recipeses[i];
 
-          const hasMatchingAppliance = recipe.appliance.toLowerCase().includes(choice);
+    // Vérifier si la recette contient tous les éléments du tableau
+    const hasAllValues = tableauValeurs.every(choice => {
+      const hasMatchingIngredient = recipe.ingredients.some(ingredient =>
+        ingredient.ingredient.toLowerCase().includes(choice)
+      );
 
-          const hasMatchingUstensil = recipe.ustensils.some(ustensil =>
-              ustensil.toLowerCase().includes(choice)
-          );
+      const hasMatchingAppliance = recipe.appliance.toLowerCase().includes(choice);
 
-          return hasMatchingIngredient || hasMatchingAppliance || hasMatchingUstensil;
-      });
+      const hasMatchingUstensil = recipe.ustensils.some(ustensil =>
+        ustensil.toLowerCase().includes(choice)
+      );
 
-      return hasAllValues;
-  });
+      return hasMatchingIngredient || hasMatchingAppliance || hasMatchingUstensil;
+    });
 
- 
-  displayTotalRecipes(resultsTags)
-clearSelect()
-allIngredients(resultsTags)
-allAppareils(resultsTags)
-allUstensils(resultsTags)
-custumSelect()
-cleanRecipescontenair()
-displayResults(resultsTags)
+    if (hasAllValues) {
+      resultsTags.push(recipe);
+    }
+  }
+
+  displayTotalRecipes(resultsTags);
+  clearSelect();
+  allIngredients(resultsTags);
+  allAppareils(resultsTags);
+  allUstensils(resultsTags);
+  custumSelect();
+  cleanRecipescontenair();
+  displayResults(resultsTags);
 }
 
 
@@ -324,7 +354,7 @@ function updateTags() {
         const index = tableauValeurs.indexOf(valueToRemove);
         if (index > -1) {
           tableauValeurs.splice(index, 1);
-          console.log(tableauValeurs); // Afficher le tableau mis à jour
+          
           
           updateSearchTags()
         }
@@ -335,10 +365,10 @@ function updateTags() {
       tags.appendChild(tagsLabel);
       tags.appendChild(tagsButton);
       tagContainer.appendChild(tags);
-      console.log(tableauValeurs);
+      
     }
   }
-  console.log(selectValue);
+  
 
   
 }
